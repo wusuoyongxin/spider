@@ -17,6 +17,7 @@
   <modules>
   	<module>../spider-teacher</module>
   	<module>../spider-teacher-web</module>
+  	<module>../spider-kafka-storm</module>
   </modules>
   
   <!-- 项目属性 -->
