@@ -10,3 +10,11 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+logs/spider/error/spider_error.log
+logs/spider/spider.log
+spider/.settings/
+spider/bin/.settings/org.eclipse.core.resources.prefs
+spider/bin/.settings/org.eclipse.m2e.core.prefs
+spider/.classpath
+spider/.project
+spider/bin/.project
