@@ -7,7 +7,7 @@
   </parent>
   <artifactId>spider-teacher</artifactId>
   
-    <dependencies>
+  <dependencies>
   	<dependency>
 		<groupId>jdk.tools</groupId>
 		<artifactId>jdk.tools</artifactId>
