@@ -15,8 +15,8 @@
   </distributionManagement>
 
   <modules>
-  	<module>spider-teacher</module>
-  	<module>spider-teacher-web</module>
+  	<module>../spider-teacher</module>
+  	<module>../spider-teacher-web</module>
   </modules>
   
   <!-- 项目属性 -->
