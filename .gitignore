@@ -18,3 +18,8 @@ spider/bin/.settings/org.eclipse.m2e.core.prefs
 spider/.classpath
 spider/.project
 spider/bin/.project
+spider-parent/.settings/
+spider-parent/spider-teacher-web/.settings/
+spider-parent/logs/
+spider-parent/spider-teacher-web/target/
+spider-parent/spider-teacher/.settings/
