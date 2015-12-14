@@ -4,8 +4,11 @@
     <groupId>com.wusyx</groupId>
     <artifactId>spider-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../spider-parent/pom.xml</relativePath>
   </parent>
   <artifactId>spider-teacher</artifactId>
+  <name>spider-teacher</name>
+  <packaging>jar</packaging>
   
   <dependencies>
   	<dependency>
