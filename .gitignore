@@ -27,3 +27,6 @@ spider-kafka-storm/.settings/
 spider-kafka-storm/target/
 .idea/
 spider-teacher-web/.settings/
+bin/
+logs/
+spider-teacher/.settings/
