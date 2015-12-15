@@ -4,6 +4,7 @@
     <groupId>com.wusyx</groupId>
     <artifactId>spider-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../spider-parent/pom.xml</relativePath>
   </parent>
   <artifactId>spider-kafka-storm</artifactId>
   
