@@ -66,18 +66,18 @@
 			<version>1.0.1.Final</version>
 		</dependency>
 		<!-- Servlet & Jsp -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
-			<scope>provided</scope> 只在编译和测试环境下使用，不参与打包运行，默认值Runtime
+			<scope>provided</scope> <!--只在编译和测试环境下使用，不参与打包运行，默认值Runtime-->
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jsp-api</artifactId>
 			<version>2.0</version>
 			<scope>provided</scope>
-		</dependency> -->
+		</dependency>
 		<!-- JSTL -->
 		<dependency>
 			<groupId>jstl</groupId>
