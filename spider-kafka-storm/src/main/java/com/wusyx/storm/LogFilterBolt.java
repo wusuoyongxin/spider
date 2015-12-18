@@ -14,35 +14,36 @@ import backtype.storm.tuple.Tuple;
 
 /**
  * 接收kafakspout发射出来的数据进行处理
- * @author Administrator
  *
+ * @author Administrator
  */
 public class LogFilterBolt extends BaseRichBolt {
-	
-	private static Logger logger = LoggerFactory.getLogger(LogFilterBolt.class);
-	
-	private OutputCollector collector;
-	@Override
-	public void prepare(Map stormConf, TopologyContext context,
-			OutputCollector collector) {
-		this.collector = collector;
-	}
 
-	@Override
-	public void execute(Tuple input) {
-		try {
-			byte[] binaryByField = input.getBinaryByField("bytes");
-			String value = new String(binaryByField);
-			this.collector.ack(input);
-			logger.info("{}", value);
-		} catch (Exception e) {
-			this.collector.fail(input);
-		}
-	}
+    private static Logger logger = LoggerFactory.getLogger(LogFilterBolt.class);
 
-	@Override
-	public void declareOutputFields(OutputFieldsDeclarer declarer) {
-		
-	}
+    private OutputCollector collector;
+
+    @Override
+    public void prepare(Map stormConf, TopologyContext context,
+                        OutputCollector collector) {
+        this.collector = collector;
+    }
+
+    @Override
+    public void execute(Tuple input) {
+        try {
+            byte[] binaryByField = input.getBinaryByField("bytes");
+            String value = new String(binaryByField);
+            this.collector.ack(input);
+            logger.info("{}", value);
+        } catch (Exception e) {
+            this.collector.fail(input);
+        }
+    }
+
+    @Override
+    public void declareOutputFields(OutputFieldsDeclarer declarer) {
+
+    }
 
 }
