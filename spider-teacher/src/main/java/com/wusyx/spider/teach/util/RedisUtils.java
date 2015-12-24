@@ -25,14 +25,14 @@ public class RedisUtils {
 		poolConfig.setTestOnBorrow(true);
 		jedisPool = new JedisPool(poolConfig, "192.168.199.110", 6379);
 	}
-	
+
 	public List<String> lrange(String key,int start,int end){
 		Jedis resource = jedisPool.getResource();
-		
+
 		List<String> list = resource.lrange(key, start, end);
 		jedisPool.returnResourceObject(resource);
 		return list;
-		
+
 	}
 	
 	public void add(String lowKey, String url) {

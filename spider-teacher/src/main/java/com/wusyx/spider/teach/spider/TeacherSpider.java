@@ -23,10 +23,8 @@ import com.wusyx.spider.teach.entity.Page;
 import com.wusyx.spider.teach.process.Processable;
 import com.wusyx.spider.teach.process.ZhjswProcess;
 import com.wusyx.spider.teach.repository.QueueRepository;
-import com.wusyx.spider.teach.repository.RandomRedisRepository;
 import com.wusyx.spider.teach.repository.Repository;
 import com.wusyx.spider.teach.store.ConsoleStore;
-import com.wusyx.spider.teach.store.HbaseStore;
 import com.wusyx.spider.teach.store.Storeable;
 import com.wusyx.spider.teach.util.Config;
 import com.wusyx.spider.teach.util.SleepUtils;
@@ -43,7 +41,10 @@ public class TeacherSpider{
 	private Storeable storeable = new ConsoleStore();
 	private Repository repository = new QueueRepository();
 	ExecutorService newFixedThreadPool = Executors.newFixedThreadPool(Config.nThread);
-	
+
+	/**
+	 * 构造方法
+	 */
 	public TeacherSpider() {
 		try {
 			RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
@@ -54,16 +55,16 @@ public class TeacherSpider{
 			//获取当前主机ip
 			InetAddress localHost = InetAddress.getLocalHost();
 			String hostAddress = localHost.getHostAddress();
-			client
-			.create()
-			.creatingParentsIfNeeded()
-			.withMode(CreateMode.EPHEMERAL)
-			.withACL(Ids.OPEN_ACL_UNSAFE)
-			.forPath("/spider/"+hostAddress);
+			client.create().
+					creatingParentsIfNeeded().
+					withMode(CreateMode.EPHEMERAL).
+					withACL(Ids.OPEN_ACL_UNSAFE).
+					forPath("/spider/"+hostAddress);
 		} catch (Exception e) {
 		    logger.error("{}", "启动爬虫注册zookeeper临时监控节点失败！");
 		}
 	}
+
 	/**
 	 * 执行爬虫
 	 * @param args
@@ -78,11 +79,11 @@ public class TeacherSpider{
 //		teacherSpider.setStoreable(new HbaseStore());
 		//url队列
 //		teacherSpider.setRepository(new RandomRedisRepository());
-		
+
 		String url = "http://www.jiangshi.org/searchLect.aspx?order=1";
 		teacherSpider.setSeedUrl(url);
 		teacherSpider.start();
-    }
+	}
 	
 	/**
 	 * 添加种子url
@@ -141,7 +142,7 @@ public class TeacherSpider{
 	 */
 	private void check() {
 		if(processable==null){
-			String message = "没有设置解析类";
+			String message = "没有设置解析类：processable";
 			logger.error(message);
 			throw new RuntimeException(message);
 		}
@@ -150,7 +151,7 @@ public class TeacherSpider{
 		logger.info("processable的实现类是：{}",processable.getClass().getName());
 		logger.info("storeable的实现类是：{}",storeable.getClass().getName());
 		logger.info("repository的实现类是：{}",repository.getClass().getName());
-		logger.info("=================================================================");
+		logger.info("===============================================================");
 	}
 	
 	/**
