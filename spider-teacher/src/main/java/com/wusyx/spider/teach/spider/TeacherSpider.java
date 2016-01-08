@@ -11,6 +11,7 @@ import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.apache.velocity.runtime.directive.Foreach;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.slf4j.Logger;
@@ -80,8 +81,11 @@ public class TeacherSpider{
 		//url队列
 //		teacherSpider.setRepository(new RandomRedisRepository());
 
-		String url = "http://www.jiangshi.org/searchLect.aspx?order=1";
-		teacherSpider.setSeedUrl(url);
+//		String url = "http://www.jiangshi.org/searchLect.aspx?order=1";
+		for (int i = 11; i < 50; i++) {
+			String url = "http://www.jiangshi.org/searchLect.aspx?s=" + i;
+			teacherSpider.setSeedUrl(url);
+		}
 		teacherSpider.start();
 	}
 	
@@ -116,7 +120,18 @@ public class TeacherSpider{
 						    List<String> urllist = page.getUrlList();
 						    for (String nextUrl : urllist) {
 						        if (nextUrl.startsWith("http://www.jiangshi.org/searchLect.aspx")) {
-						            TeacherSpider.this.repository.addHeigh(nextUrl);
+									String[] splits = nextUrl.split("\\?")[1].split("&");
+									boolean flag = true;
+									for (String KV : splits){
+										String[] kvs = KV.split("=");
+										if (kvs[0].equals("page") && kvs[1].equals("11")){
+											flag = false;
+											break;
+										}
+									}
+									if (flag){
+										TeacherSpider.this.repository.addHeigh(nextUrl);
+									}
 						        } else {
 						            TeacherSpider.this.repository.add(nextUrl);
 						        }
