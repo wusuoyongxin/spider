@@ -1,8 +1,11 @@
 package com.wusyx.spider.teach;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.wusyx.spider.teach.download.HttpClientDownload;
@@ -49,6 +52,34 @@ public class SpiderTest {
 	    System.out.println(string);
 	    System.out.println(string1);
 	}
-	
+
+	@Test
+	public void testList(){
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		Vector<Integer> vector = new Vector<Integer>();
+		long start = System.currentTimeMillis();
+		for(int i=0;i<1000000;i++)
+			list.add(i);
+		long end = System.currentTimeMillis();
+		System.out.println("ArrayList进行1000000次插入操作耗时："+(end-start)+"ms");
+		start = System.currentTimeMillis();
+		for(int i=0;i<1000000;i++)
+			vector.add(i);
+		end = System.currentTimeMillis();
+		System.out.println("Vector进行1000000次插入操作耗时："+(end-start)+"ms");
+	}
+
+	@Test
+	public void testListException(){
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		list.add(2);
+		Iterator<Integer> iterator = list.iterator();
+		while(iterator.hasNext()){
+			Integer integer = iterator.next();
+			if(integer==2)
+				list.remove(integer);
+		}
+	}
+
 
 }

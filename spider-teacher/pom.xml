@@ -213,12 +213,13 @@
 			<version>${slf4j.version}</version>
 		</dependency>
 		<!-- LOGGING end -->
+	  	<!-- Log4jAppender begin -->
 		<dependency>
 			<groupId>org.apache.flume.flume-ng-clients</groupId>
 			<artifactId>flume-ng-log4jappender</artifactId>
 			<version>1.4.0</version>
 		</dependency>
-		
+	  	<!-- Log4jAppender end -->
 		
 		<!-- GENERAL UTILS begin -->
 		<dependency>
